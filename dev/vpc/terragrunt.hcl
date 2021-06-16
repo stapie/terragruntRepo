@@ -1,10 +1,9 @@
 locals {
-  environment_vars = read_terragrunt_config(find_in_parent_folders("env.hcl"))
+  env = read_terragrunt_config(find_in_parent_folders("env.hcl")).locals
 
-    # Extract out common variables for reuse
-    env = local.environment_vars.locals
+
 }
-
+################ HERE you can specify a terraform repo or just call a command "terragrunt run-all apply --terragrunt-source ../../modules" ############################
 terraform {
   source = "git@github.com:stapie/terraformRepo.git//vpc"
 }
